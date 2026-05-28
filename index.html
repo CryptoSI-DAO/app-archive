@@ -764,23 +764,85 @@ let data = null;
 let currentDate = null;
 
 // ── Init ──
+// ── GitHub API config ──
+const REPO = "CryptoSI-DAO/app-ideas";
+const API_BASE = `https://api.github.com/repos/${REPO}/contents/ideas`;
+const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/ideas`;
+
+async function ghAPI(url) {
+  const r = await fetch(url, { headers: { Accept: "application/vnd.github.v3+json" } });
+  if (!r.ok) throw new Error(`GitHub API ${r.status}`);
+  return r.json();
+}
+
+async function fetchMarkdown(path) {
+  const r = await fetch(`${RAW_BASE}/${path}`);
+  if (!r.ok) throw new Error(`Fetch ${path}: ${r.status}`);
+  return r.text();
+}
+
 async function init() {
   try {
-    const resp = await fetch('data.json');
-    if (!resp.ok) throw new Error('Failed to load data.json');
-    data = await resp.json();
-    renderHeader();
-    renderNav();
-    const dates = Object.keys(data.dates).sort().reverse();
-    if (dates.length) selectDate(dates[0]);
-  } catch (err) {
-    document.getElementById('main').innerHTML = `
-      <div class="empty-state">
-        <div class="icon">⚠️</div>
-        <h3>Failed to load</h3>
-        <p>${err.message}</p>
-      </div>`;
+    // Try live GitHub API first
+    data = await buildFromGitHub();
+  } catch (e) {
+    console.warn("GitHub API failed, falling back to data.json:", e.message);
+    try {
+      const resp = await fetch('data.json');
+      if (!resp.ok) throw new Error('data.json not found');
+      data = await resp.json();
+    } catch (e2) {
+      document.getElementById('main').innerHTML = `
+        <div class="empty-state">
+          <div class="icon">⚠️</div>
+          <h3>Failed to load ideas</h3>
+          <p>${e.message}</p>
+        </div>`;
+      return;
+    }
   }
+  renderHeader();
+  renderNav();
+  const dates = Object.keys(data.dates).sort().reverse();
+  if (dates.length) selectDate(dates[0]);
+}
+
+async function buildFromGitHub() {
+  const dates = await ghAPI(API_BASE);
+  const structure = {};
+
+  for (const dir of dates.filter(d => d.type === 'dir')) {
+    const dateName = dir.name;
+    const contents = await ghAPI(dir.url);
+    const entry = { ideas: [], has_summary: false };
+
+    // Daily summary
+    const summary = contents.find(f => f.name === 'daily-summary.md');
+    if (summary) {
+      entry.has_summary = true;
+      entry.summaryContent = await fetchMarkdown(`${dateName}/daily-summary.md`);
+    }
+
+    // Idea subdirectories
+    const ideaDirs = contents.filter(c => c.type === 'dir' && c.name.match(/^\d{3}-/));
+    for (const ideaDir of ideaDirs.sort((a, b) => a.name.localeCompare(b.name))) {
+      const ideaContents = await ghAPI(ideaDir.url);
+      const files = {};
+      for (const file of ideaContents.filter(f => f.name.endsWith('.md'))) {
+        files[file.name] = await fetchMarkdown(`${dateName}/${ideaDir.name}/${file.name}`);
+      }
+      if (Object.keys(files).length) {
+        entry.ideas.push({ slug: ideaDir.name, files });
+      }
+    }
+    structure[dateName] = entry;
+  }
+
+  return {
+    generated: new Date().toISOString().slice(0, 10),
+    repo: REPO,
+    dates: structure
+  };
 }
 
 function renderHeader() {
