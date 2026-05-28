@@ -1,85 +1,91 @@
 #!/usr/bin/env python3
 """
-refresh-data.py — Regenerate data.json from the app-ideas GitHub repo.
+refresh-data.py — Regenerate data.json from the public app-ideas GitHub repo.
 
 Usage:
   python3 refresh-data.py
 
-Requirements:
-  pip install requests
-
-This clones (or pulls) the app-ideas repo and rebuilds data.json
-so the archive site always has the latest ideas.
+No authentication needed — works with public repos via the GitHub API.
 """
 
-import os
 import json
-import subprocess
-import sys
+import urllib.request
+import ssl
+import os
 from datetime import datetime
 
-REPO_URL = "https://github.com/CryptoSI-DAO/app-ideas.git"
-REPO_DIR = "/tmp/app-ideas-repo"
+REPO = "CryptoSI-DAO/app-ideas"
+API_BASE = f"https://api.github.com/repos/{REPO}/contents/ideas"
+RAW_BASE = f"https://raw.githubusercontent.com/{REPO}/main/ideas"
 OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
-
-def clone_or_pull():
-    if os.path.isdir(os.path.join(REPO_DIR, ".git")):
-        print("Pulling latest changes...")
-        subprocess.run(["git", "-C", REPO_DIR, "pull", "--quiet"], check=True)
-    else:
-        print("Cloning repo...")
-        subprocess.run(["git", "clone", "--depth", "1", REPO_URL, REPO_DIR], check=True)
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
 
 
-def build_data():
-    ideas_dir = os.path.join(REPO_DIR, "ideas")
-    if not os.path.isdir(ideas_dir):
-        print("ERROR: ideas/ directory not found in repo", file=sys.stderr)
-        sys.exit(1)
+def api_get(url):
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/vnd.github.v3+json",
+    })
+    with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
+        return json.loads(r.read().decode())
 
+
+def raw_get(path):
+    url = f"{RAW_BASE}/{path}"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
+        return r.read().decode()
+
+
+def build():
+    dates = api_get(API_BASE)
     structure = {}
-    for date_dir in sorted(os.listdir(ideas_dir)):
-        date_path = os.path.join(ideas_dir, date_dir)
-        if not os.path.isdir(date_path):
-            continue
 
+    for d in dates:
+        if d["type"] != "dir":
+            continue
+        date_name = d["name"]
+        contents = api_get(d["url"])
         entry = {"ideas": [], "has_summary": False}
 
-        summary_path = os.path.join(date_path, "daily-summary.md")
-        if os.path.exists(summary_path):
+        summary = next((f for f in contents if f["name"] == "daily-summary.md"), None)
+        if summary:
             entry["has_summary"] = True
-            with open(summary_path) as f:
-                entry["summaryContent"] = f.read()
+            entry["summaryContent"] = raw_get(f"{date_name}/daily-summary.md")
 
-        for item in sorted(os.listdir(date_path)):
-            item_path = os.path.join(date_path, item)
-            if not os.path.isdir(item_path):
-                continue
+        idea_dirs = sorted(
+            [c for c in contents if c["type"] == "dir" and c["name"][:3].isdigit()],
+            key=lambda x: x["name"],
+        )
+
+        for idea_dir in idea_dirs:
+            idea_contents = api_get(idea_dir["url"])
             files = {}
-            for fname in sorted(os.listdir(item_path)):
-                fpath = os.path.join(item_path, fname)
-                if os.path.isfile(fpath) and fname.endswith(".md"):
-                    with open(fpath) as f:
-                        files[fname] = f.read()
+            for f in sorted(idea_contents):
+                if f["name"].endswith(".md"):
+                    files[f["name"]] = raw_get(
+                        f"{date_name}/{idea_dir['name']}/{f['name']}"
+                    )
             if files:
-                entry["ideas"].append({"slug": item, "files": files})
+                entry["ideas"].append({"slug": idea_dir["name"], "files": files})
 
-        structure[date_dir] = entry
+        structure[date_name] = entry
 
     output = {
         "generated": datetime.utcnow().strftime("%Y-%m-%d"),
-        "repo": "CryptoSI-DAO/app-ideas",
+        "repo": REPO,
         "dates": structure,
     }
 
     with open(OUTPUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
 
-    total = sum(len(d["ideas"]) for d in structure.values())
-    print(f"✅ data.json updated: {len(structure)} dates, {total} ideas")
+    total = sum(len(v["ideas"]) for v in structure.values())
+    print(f"✅ data.json updated: {len(structure)} dates, {total} total ideas")
 
 
 if __name__ == "__main__":
-    clone_or_pull()
-    build_data()
+    build()

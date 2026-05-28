@@ -8,23 +8,19 @@ Every day, an automated research agent scans Google Trends, Reddit growth signal
 
 This site displays that archive in a mobile-responsive web interface.
 
-## Updating the Data
+## How It Works
 
-The site loads from `data.json`. To refresh with the latest ideas:
+The site fetches content **live from the GitHub API** — no backend needed. When the daily research cron adds new ideas to the `app-ideas` repo, they appear here automatically. A GitHub Actions workflow also regenerates `data.json` daily as a fallback.
+
+## Manual Data Refresh
 
 ```bash
 python3 refresh-data.py
 ```
 
-This pulls the latest from the GitHub repo and regenerates the JSON. The script can be run on a cron job to keep the site current.
-
 ## Deployment
 
-This is a static site — just `index.html`, `data.json`, and optionally `refresh-data.py`. Deploy to:
-- GitHub Pages
-- Vercel
-- Netlify
-- Any static host
+Static site — just `index.html`, `data.json`, and `refresh-data.py`. Deploy to GitHub Pages, Vercel, Netlify, or any static host.
 
 ## Credits
 
