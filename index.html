@@ -642,6 +642,212 @@
     .modal { border-radius: var(--radius); }
     .day-header h1 { font-size: 1.375rem; }
   }
+
+  /* ── Leaderboard Navigation ── */
+  ._lb-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    padding-bottom: 0;
+  }
+  .lb-nav-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  .lb-nav-btn:hover { color: var(--text-secondary); }
+  .lb-nav-btn.active {
+    color: hsl(var(--primary));
+    border-bottom-color: hsl(var(--primary));
+  }
+
+  /* ── Leaderboard Page ── */
+  .lb-header {
+    margin-bottom: 2rem;
+  }
+  .lb-header h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .lb-header .lb-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* ── Leaderboard Table ── */
+  .lb-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  .lb-table thead th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 2px solid hsl(var(--border));
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+  }
+  .lb-table thead th.right { text-align: right; }
+  .lb-table tbody tr {
+    transition: background 0.15s ease;
+    cursor: pointer;
+  }
+  .lb-table tbody tr:hover {
+    background: hsl(var(--muted) / 0.25);
+  }
+  .lb-table tbody td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid hsl(var(--border) / 0.3);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    vertical-align: middle;
+  }
+  .lb-table tbody td.right { text-align: right; }
+
+  .lb-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lb-rank.r1 { background: rgba(251, 191, 36, 0.15); color: var(--yellow); }
+  .lb-rank.r2 { background: rgba(192, 192, 208, 0.15); color: #c0c0d0; }
+  .lb-rank.r3 { background: rgba(251, 146, 60, 0.15); color: var(--orange); }
+  .lb-rank.rn { background: hsl(var(--muted) / 0.5); color: var(--text-muted); }
+
+  .lb-idea-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .lb-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+  .lb-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+  }
+  .lb-score-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+  .lb-score-bar {
+    flex: 1;
+    height: 6px;
+    background: hsl(var(--muted) / 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+    min-width: 60px;
+  }
+  .lb-score-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .lb-dim-pills {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+  .lb-dim-pill {
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.1875rem 0.5rem;
+    border-radius: 100px;
+    background: hsl(var(--muted) / 0.6);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+  .lb-dim-pill.top {
+    background: hsl(var(--primary) / 0.12);
+    color: hsl(var(--primary));
+  }
+
+  /* ── Sort Controls ── */
+  .lb-sort {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .lb-sort-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+  .lb-sort-btn {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    background: hsl(var(--muted) / 0.4);
+    border: 1px solid transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lb-sort-btn:hover {
+    color: var(--text-secondary);
+    background: hsl(var(--muted) / 0.7);
+  }
+  .lb-sort-btn.active {
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.12);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  /* ── Section hidden by default ── */
+  .view-section { display: none; }
+  .view-section.active { display: block; }
+
+  @media (max-width: 768px) {
+    .lb-header h1 { font-size: 1.75rem; }
+    .lb-dim-pills { display: none; }
+    .lb-table .hide-mobile { display: none; }
+    .lb-nav-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -658,10 +864,23 @@
   </div>
 </header>
 
+<div class="lb-site-nav">
+  <button class="lb-nav-btn active" onclick="switchView('daily')" id="navBtnDaily">📅 Daily Research</button>
+  <button class="lb-nav-btn" onclick="switchView('leaderboard')" id="navBtnLeaderboard">🏆 Leaderboard</button>
+</div>
+
 <main class="container" id="main">
-  <div class="loading">
-    <div class="spinner"></div>
-    <p>Loading ideas...</p>
+  <div id="view-daily" class="view-section active">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Loading ideas...</p>
+    </div>
+  </div>
+  <div id="view-leaderboard" class="view-section">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Loading leaderboard...</p>
+    </div>
   </div>
 </main>
 
@@ -846,6 +1065,8 @@ async function buildFromGitHub() {
 }
 
 function renderHeader() {
+  const dailyView = document.getElementById('view-daily');
+  const hasLeaderboard = Object.keys(data.dates).length > 0;
   const dates = Object.keys(data.dates);
   let total = 0;
   dates.forEach(d => { total += data.dates[d].ideas.length; });
@@ -867,12 +1088,12 @@ function renderNav() {
     chip.onclick = () => selectDate(date);
     nav.appendChild(chip);
   });
-  const main = document.getElementById('main');
-  main.innerHTML = '';
-  main.appendChild(nav);
+  const dailyView = document.getElementById('view-daily');
+  dailyView.innerHTML = '';
+  dailyView.appendChild(nav);
   const content = document.createElement('div');
   content.id = 'dayContent';
-  main.appendChild(content);
+  dailyView.appendChild(content);
 }
 
 function selectDate(date) {
@@ -1003,6 +1224,160 @@ function esc(s) {
   d.textContent = s;
   return d.innerHTML;
 }
+
+
+// ── View Switching ──
+function switchView(view) {
+  document.querySelectorAll('.lb-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  if (view === 'daily') {
+    document.getElementById('navBtnDaily').classList.add('active');
+    document.getElementById('view-daily').classList.add('active');
+  } else {
+    document.getElementById('navBtnLeaderboard').classList.add('active');
+    document.getElementById('view-leaderboard').classList.add('active');
+    if (data) renderLeaderboard();
+  }
+}
+
+// ── Leaderboard State ──
+let lbSortBy = 'score'; // 'score' | 'trend' | 'gap' | 'build' | 'evergreen' | 'money' | 'date'
+let lbSortDir = 'desc';
+
+function sortLeaderboard(by) {
+  if (lbSortBy === by) {
+    lbSortDir = lbSortDir === 'desc' ? 'asc' : 'desc';
+  } else {
+    lbSortBy = by;
+    lbSortDir = 'desc';
+  }
+  renderLeaderboard();
+}
+
+function renderLeaderboard() {
+  if (!data) return;
+  const lb = document.getElementById('view-leaderboard');
+  
+  // Build leaderboard from data
+  let entries = [];
+  for (const date of Object.keys(data.dates).sort()) {
+    const day = data.dates[date];
+    for (const idea of (day.ideas || [])) {
+      const md = idea.files['idea.md'] || '';
+      const title = extractTitle(md) || idea.slug;
+      const scores = extractScores(md) || {};
+      const avgStr = (scores['Average'] || scores['Avg'] || '0');
+      const avg = parseFloat(avgStr) || 0;
+      
+      entries.push({
+        name: title,
+        slug: idea.slug,
+        date: date,
+        score: avg,
+        trend: parseFloat(scores['Trend Momentum'] || '0'),
+        gap: parseFloat(scores['App Gap'] || '0'),
+        build: parseFloat(scores['Build Simplicity'] || '0'),
+        evergreen: parseFloat(scores['Evergreen Potential'] || '0'),
+        money: parseFloat(scores['Monetization'] || '0'),
+      });
+    }
+  }
+  
+  // Sort
+  entries.sort((a, b) => {
+    let va, vb;
+    if (lbSortBy === 'score') { va = a.score; vb = b.score; }
+    else if (lbSortBy === 'date') { va = a.date; vb = b.date; }
+    else { va = a[lbSortBy]; vb = b[lbSortBy]; }
+    if (va === vb) return a.name.localeCompare(b.name);
+    return lbSortDir === 'desc' ? vb - va : va - vb;
+  });
+  
+  // Render
+  const maxScore = Math.max(...entries.map(e => e.score), 1);
+  
+  let sortLabel = {score:'Overall', trend:'Trend', gap:'App Gap', build:'Build', evergreen:'Evergreen', money:'Monetization', date:'Date'};
+  let dirArrow = lbSortDir === 'desc' ? '↓' : '↑';
+  
+  let html = `
+    <div class="lb-header">
+      <h1>🏆 All-Time Leaderboard</h1>
+      <div class="lb-subtitle">${entries.length} app ideas ranked by score. Click column headers to sort.</div>
+    </div>
+    
+    <div class="lb-sort">
+      <span class="lb-sort-label">Sort by</span>
+      ${['score','trend','gap','build','evergreen','money','date'].map(k =>
+        `<button class="lb-sort-btn ${lbSortBy === k ? 'active' : ''}" onclick="sortLeaderboard('${k}')">${sortLabel[k]}${lbSortBy === k ? ' ' + dirArrow : ''}</button>`
+      ).join('')}
+    </div>
+    
+    <table class="lb-table">
+      <thead>
+        <tr>
+          <th style="width:48px">#</th>
+          <th>Idea</th>
+          <th class="hide-mobile" style="width:100px">Date</th>
+          <th class="right" style="width:90px">Score</th>
+          <th class="hide-mobile" style="width:200px">Score Breakdown</th>
+          <th class="right hide-mobile" style="width:90px">Bar</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+  
+  entries.forEach((e, i) => {
+    const rank = i + 1;
+    const rankClass = rank <= 3 ? 'r' + rank : 'rn';
+    const dateStr = fmtDate(e.date);
+    const barWidth = Math.round((e.score / 10) * 100);
+    
+    // Top dimensions
+    const dims = [
+      {k:'Tr', v:e.trend}, {k:'Gap', v:e.gap}, {k:'Bld', v:e.build}, {k:'Evr', v:e.evergreen}, {k:'$', v:e.money}
+    ];
+    const topDims = dims.filter(d => d.v >= 8).slice(0, 3);
+    
+    html += `
+      <tr onclick="openIdeaBySlug('${e.slug}','${e.date}')">
+        <td><span class="lb-rank ${rankClass}">${rank}</span></td>
+        <td>
+          <div class="lb-idea-name">${esc(e.name)}</div>
+        </td>
+        <td class="hide-mobile"><span class="lb-date">${dateStr}</span></td>
+        <td class="right"><span class="lb-score">${e.score.toFixed(1)}</span></td>
+        <td class="hide-mobile">
+          <div class="lb-dim-pills">
+            ${topDims.map(d => `<span class="lb-dim-pill top">${d.k}:${d.v}</span>`).join('')}
+          </div>
+        </td>
+        <td class="right hide-mobile">
+          <div class="lb-score-bar-wrap">
+            <div class="lb-score-bar">
+              <div class="lb-score-bar-fill" style="width:${barWidth}%"></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+  
+  html += '</tbody></table>';
+  lb.innerHTML = html;
+}
+
+function openIdeaBySlug(slug, date) {
+  switchView('daily');
+  // Find the idea index within the date
+  const day = data.dates[date];
+  if (!day) return;
+  const idx = day.ideas.findIndex(i => i.slug === slug);
+  if (idx >= 0) {
+    selectDate(date);
+    setTimeout(() => openModal(date, idx), 50);
+  }
+}
+
 
 // ── Go ──
 init();
