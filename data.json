@@ -76,5 +76,133 @@
       ],
       "daily-summary.md": "# Daily Summary \u2014 2026-05-30\n\n## Top 3 App Ideas\n\n### \ud83e\udd47 #1: Sleep Hygiene Guide \u2014 Score: 8.4/10\n- **Pitch**: A clean, reference-based guide to sleep hygiene \u2014 evidence-based tips, checklists, and routines to improve sleep quality without tracking or sensors.\n- **Why**: Google Trends shows \"gen 5 oura ring\" (2K+, 75% rise) signaling booming sleep wellness interest, yet ZERO dedicated sleep hygiene guide apps exist on the App Store \u2014 only trackers and sound apps.\n- **Build Time**: ~2 hours\n- **Pricing**: Free with IAP unlock $1.99\n\n### \ud83e\udd48 #2: Contrast Therapy Protocol \u2014 Score: 7.6/10\n- **Pitch**: A step-by-step protocol guide for contrast therapy (cold plunge + sauna/heat) \u2014 durations, temperatures, safety, and progression plans.\n- **Why**: Cold plunge trend is sustained, but App Store is fragmented with low-review apps (17-107 reviews, one with 2.7 stars). No dominant, well-designed protocol guide exists.\n- **Build Time**: ~2 hours\n- **Pricing**: Free with IAP unlock $1.99\n\n### \ud83e\udd49 #3: Food Shelf Life Guide \u2014 Score: 7.6/10\n- **Pitch**: A quick-reference guide to how long foods last \u2014 fridge, freezer, and pantry storage times with safety tips.\n- **Why**: Scattered pantry/food-scanner apps exist but NO dedicated \"how long does food last\" reference guide. Evergreen need, completely offline, simple content curation.\n- **Build Time**: ~1.5 hours\n- **Pricing**: Free with IAP unlock $0.99\n\n---\n\n## All Ideas Scored Today\n\n| # | Idea | Trend | Gap | Build | Evergreen | Money | Avg |\n|---|------|-------|-----|-------|-----------|-------|-----|\n| 1 | Sleep Hygiene Guide | 8 | 9 | 9 | 9 | 7 | **8.4** |\n| 2 | Contrast Therapy Protocol | 7 | 8 | 9 | 7 | 7 | **7.6** |\n| 3 | Food Shelf Life Guide | 6 | 8 | 9 | 9 | 6 | **7.6** |\n| 4 | Morning Routine Checklist | 6 | 6 | 9 | 8 | 5 | 6.8 |\n| 5 | Glycemic Index Guide | 5 | 6 | 9 | 7 | 6 | 6.6 |\n| 6 | Dopamine Detox | 8 | 3 | 6 | 6 | 7 | 6.0 |\n| 7 | Cold Plunge Tracker | 7 | 4 | 5 | 7 | 7 | 6.0 |\n| 8 | Breathing Exercise | 6 | 3 | 7 | 8 | 6 | 6.0 |\n| 9 | Protein Tracker | 6 | 2 | 5 | 8 | 7 | 5.6 |\n| 10 | Habit Streak Counter | 5 | 2 | 7 | 7 | 6 | 5.4 |\n\n---\n\n## Trends Watched\n- **Oura Ring Gen 5** (Google Trends Tech, 2K+ searches, +75%): Signals continued growth in sleep/wellness tech awareness \u2014 drives demand for complementary content apps\n- **Vaccines/Immunizations** (Google Trends Health, 500-10K+ range): News cycle spike, not actionable for consumer apps\n- **Liftoff Mobile IPO** (Google Trends Finance, 10K+, 400%): Tech/business news, no consumer app angle\n- **Superfood supplement salmonella recall** (Google Trends Health, 5K+, 400%): Negative food safety story \u2014 could drive interest in food safety apps like shelf life guide\n\n## Sources Checked\n- [x] Google Trends (US, 24 hours): Health (7), Technology (18), Food (5), Hobbies (8), Finance (3), All categories\n- [x] App Store gap analysis (iTunes Search API): 10+ queries run programmatically\n- [x] Bing.com search: supportive trend research\n\n## Archive Notes\n- **Dopamine Detox**: CLOSED \u2014 gap has filled. 10+ well-rated apps now on App Store (ScreenZen 41K rev, Flora 82K rev, QUITTR 32K rev). Previously tracked as open.\n- **Cold Plunge Tracker**: CLOSED \u2014 gap closing fast. 10+ apps, 6 rated 4.7+ stars. Previously tracked as open.\n- **Sleep Hygiene Guide**: Still OPEN and now the #1 pick. No dedicated guide/reference app exists despite booming sleep wellness market. Gap confirmed again today.\n- **Contrast Therapy Protocol**: NEW \u2014 identified today as a strong gap. Cold/heat wellness trend strong but no quality protocol guide exists.\n- **Food Shelf Life Guide**: NEW \u2014 identified today. Evergreen, utility-focused, no competition in the reference/guide format.\n"
     }
-  }
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "name": "Pasta Shapes Guide",
+      "slug": "001-pasta-shapes-guide",
+      "date": "2026-05-27",
+      "score": 8.4,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 10.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 7.0
+      }
+    },
+    {
+      "rank": 2,
+      "name": "Sleep Hygiene Guide",
+      "slug": "001-sleep-hygiene-guide",
+      "date": "2026-05-30",
+      "score": 8.4,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 7.0
+      }
+    },
+    {
+      "rank": 3,
+      "name": "Focus Sleeper \u2014 AI Sleep & Focus Sound Mixer",
+      "slug": "001-focus-sleeper",
+      "date": "2026-05-26",
+      "score": 8.2,
+      "scores": {
+        "Trend Momentum": 9.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 8.0
+      }
+    },
+    {
+      "rank": 4,
+      "name": "Scoville Heat Guide",
+      "slug": "002-scoville-heat-guide",
+      "date": "2026-05-27",
+      "score": 8.0,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 8.0
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Spice Substitution Guide",
+      "slug": "003-spice-substitution-guide",
+      "date": "2026-05-27",
+      "score": 7.8,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 7.0
+      }
+    },
+    {
+      "rank": 6,
+      "name": "Contrast Therapy Protocol",
+      "slug": "002-contrast-therapy-protocol",
+      "date": "2026-05-30",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 7.0
+      }
+    },
+    {
+      "rank": 7,
+      "name": "Food Shelf Life Guide",
+      "slug": "003-food-shelf-life-guide",
+      "date": "2026-05-30",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 6.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 6.0
+      }
+    },
+    {
+      "rank": 8,
+      "name": "Splitsheet \u2014 Beautiful Expense Splitting with Receipt OCR",
+      "slug": "002-splitsheet",
+      "date": "2026-05-26",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      }
+    },
+    {
+      "rank": 9,
+      "name": "Interval \u2014 Smart Workout Timer with Progressive Overload",
+      "slug": "003-interval",
+      "date": "2026-05-26",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      }
+    }
+  ]
 }
