@@ -1065,14 +1065,13 @@ async function buildFromGitHub() {
 }
 
 function renderHeader() {
-  const dailyView = document.getElementById('view-daily');
-  const hasLeaderboard = Object.keys(data.dates).length > 0;
   const dates = Object.keys(data.dates);
   let total = 0;
   dates.forEach(d => { total += data.dates[d].ideas.length; });
   document.getElementById('headerStats').innerHTML = `
     <span><strong>${dates.length}</strong> days</span>
     <span><strong>${total}</strong> ideas</span>
+    <span style="color:hsl(var(--primary))">🏆 <a href="#" onclick="switchView('leaderboard');return false;" style="color:hsl(var(--primary));text-decoration:none">Leaderboard</a></span>
   `;
 }
 
