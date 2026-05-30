@@ -1204,16 +1204,20 @@ function extractPitch(md) {
 }
 
 function extractScores(md) {
-  // Match the scoring table - handles | Avg |, | Average |, | **Average** |, etc.
-  const m = md.match(/\| Dimension.*\|.*(?:Avg|Average|\*\*Average\*\*).*\|([\s\S]+?)(?=\n##|\n---)/);
-  if (!m) return null;
-  const rows = m[0].split('\n').filter(r => r.includes('|') && !r.includes('Dimension') && !r.includes('---'));
+  // Find the Scoring Breakdown section
+  const section = md.match(/## Scoring Breakdown([\s\S]+?)(?=\n##|\n---)/);
+  if (!section) return null;
   const scores = {};
+  // Parse all table rows in the section
+  const rows = section[1].split('\n');
   rows.forEach(row => {
-    const cells = row.split('|').map(c => c.trim()).filter(c => c);
+    const trimmed = row.trim();
+    if (!trimmed.startsWith('|') || trimmed.startsWith('|---') || trimmed.includes('Dimension')) return;
+    const cells = trimmed.split('|').map(c => c.trim()).filter(c => c);
     if (cells.length >= 2) {
+      const key = cells[0].replace(/\*/g, '').trim();
       const val = cells[1].replace(/\*/g, '').trim();
-      if (val.match(/[\d.]+/)) scores[cells[0].replace(/\*/g, '').trim()] = val;
+      if (val.match(/[\d.]+/)) scores[key] = val;
     }
   });
   return Object.keys(scores).length ? scores : null;
@@ -1258,28 +1262,43 @@ function renderLeaderboard() {
   if (!data) return;
   const lb = document.getElementById('view-leaderboard');
   
-  // Build leaderboard from data
+  // Use pre-computed leaderboard from data.json, or build from markdown
   let entries = [];
-  for (const date of Object.keys(data.dates).sort()) {
-    const day = data.dates[date];
-    for (const idea of (day.ideas || [])) {
-      const md = idea.files['idea.md'] || '';
-      const title = extractTitle(md) || idea.slug;
-      const scores = extractScores(md) || {};
-      const avgStr = (scores['Average'] || scores['Avg'] || '0');
-      const avg = parseFloat(avgStr) || 0;
-      
-      entries.push({
-        name: title,
-        slug: idea.slug,
-        date: date,
-        score: avg,
-        trend: parseFloat(scores['Trend Momentum'] || '0'),
-        gap: parseFloat(scores['App Gap'] || '0'),
-        build: parseFloat(scores['Build Simplicity'] || '0'),
-        evergreen: parseFloat(scores['Evergreen Potential'] || '0'),
-        money: parseFloat(scores['Monetization'] || '0'),
-      });
+  if (data.leaderboard && data.leaderboard.length) {
+    // Use pre-computed scores from data.json
+    entries = data.leaderboard.map(e => ({
+      name: e.name,
+      slug: e.slug,
+      date: e.date,
+      score: e.score,
+      trend: e.scores['Trend Momentum'] || 0,
+      gap: e.scores['App Gap'] || 0,
+      build: e.scores['Build Simplicity'] || 0,
+      evergreen: e.scores['Evergreen Potential'] || 0,
+      money: e.scores['Monetization'] || 0,
+    }));
+  } else {
+    // Fallback: build from markdown (when using live GitHub API)
+    for (const date of Object.keys(data.dates).sort()) {
+      const day = data.dates[date];
+      for (const idea of (day.ideas || [])) {
+        const md = idea.files['idea.md'] || '';
+        const title = extractTitle(md) || idea.slug;
+        const scores = extractScores(md) || {};
+        const avgStr = (scores['Average'] || scores['Avg'] || '0');
+        const avg = parseFloat(avgStr) || 0;
+        entries.push({
+          name: title,
+          slug: idea.slug,
+          date: date,
+          score: avg,
+          trend: parseFloat(scores['Trend Momentum'] || '0'),
+          gap: parseFloat(scores['App Gap'] || '0'),
+          build: parseFloat(scores['Build Simplicity'] || '0'),
+          evergreen: parseFloat(scores['Evergreen Potential'] || '0'),
+          money: parseFloat(scores['Monetization'] || '0'),
+        });
+      }
     }
   }
   
