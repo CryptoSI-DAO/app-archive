@@ -1204,15 +1204,16 @@ function extractPitch(md) {
 }
 
 function extractScores(md) {
-  const m = md.match(/\| Dimension.*\| Avg.*\|([\s\S]+?)(?=\n##|\n---)/);
+  // Match the scoring table - handles | Avg |, | Average |, | **Average** |, etc.
+  const m = md.match(/\| Dimension.*\|.*(?:Avg|Average|\*\*Average\*\*).*\|([\s\S]+?)(?=\n##|\n---)/);
   if (!m) return null;
   const rows = m[0].split('\n').filter(r => r.includes('|') && !r.includes('Dimension') && !r.includes('---'));
   const scores = {};
   rows.forEach(row => {
     const cells = row.split('|').map(c => c.trim()).filter(c => c);
     if (cells.length >= 2) {
-      const val = cells[1].replace(/\*/g, '');
-      if (val.match(/[\d.]+/)) scores[cells[0]] = val;
+      const val = cells[1].replace(/\*/g, '').trim();
+      if (val.match(/[\d.]+/)) scores[cells[0].replace(/\*/g, '').trim()] = val;
     }
   });
   return Object.keys(scores).length ? scores : null;
