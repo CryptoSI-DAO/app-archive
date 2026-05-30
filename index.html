@@ -848,6 +848,44 @@
     .lb-nav-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
   }
 
+  /* ── Period Filter ── */
+  .lb-period {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .lb-period-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+  .lb-period-btn {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    background: hsl(var(--muted) / 0.4);
+    border: 1px solid transparent;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lb-period-btn:hover {
+    color: var(--text-secondary);
+    background: hsl(var(--muted) / 0.7);
+  }
+  .lb-period-btn.active {
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.12);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
 </style>
 </head>
 <body>
@@ -1247,6 +1285,7 @@ function switchView(view) {
 // ── Leaderboard State ──
 let lbSortBy = 'score'; // 'score' | 'trend' | 'gap' | 'build' | 'evergreen' | 'money' | 'date'
 let lbSortDir = 'desc';
+let lbPeriod = 'all'; // 'all' | 'week' | 'month'
 
 function sortLeaderboard(by) {
   if (lbSortBy === by) {
@@ -1256,6 +1295,31 @@ function sortLeaderboard(by) {
     lbSortDir = 'desc';
   }
   renderLeaderboard();
+}
+
+function setPeriod(p) {
+  lbPeriod = p;
+  // Reset to page 1 equivalent (just re-render)
+  renderLeaderboard();
+}
+
+function isInPeriod(dateStr) {
+  if (lbPeriod === 'all') return true;
+  const d = new Date(dateStr + 'T00:00:00');
+  const now = new Date();
+  if (lbPeriod === 'week') {
+    // Start of current week (Sunday)
+    const day = now.getDay();
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - day);
+    startOfWeek.setHours(0, 0, 0, 0);
+    return d >= startOfWeek;
+  }
+  if (lbPeriod === 'month') {
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    return d >= startOfMonth;
+  }
+  return true;
 }
 
 function renderLeaderboard() {
@@ -1302,6 +1366,12 @@ function renderLeaderboard() {
     }
   }
   
+  // Filter by period
+  entries = entries.filter(e => isInPeriod(e.date));
+  
+  // Update subtitle with count
+  const totalEntries = entries.length;
+  
   // Sort
   entries.sort((a, b) => {
     let va, vb;
@@ -1321,7 +1391,14 @@ function renderLeaderboard() {
   let html = `
     <div class="lb-header">
       <h1>🏆 All-Time Leaderboard</h1>
-      <div class="lb-subtitle">${entries.length} app ideas ranked by score. Click column headers to sort.</div>
+      <div class="lb-subtitle">${totalEntries} app ideas · ${lbPeriod === 'all' ? 'all time' : lbPeriod === 'week' ? 'this week' : 'this month'} · sorted by ${sortLabel[lbSortBy]}</div>
+    </div>
+    
+    <div class="lb-period">
+      <span class="lb-period-label">Period</span>
+      <button class="lb-period-btn ${lbPeriod === 'all' ? 'active' : ''}" onclick="setPeriod('all')">All Time</button>
+      <button class="lb-period-btn ${lbPeriod === 'week' ? 'active' : ''}" onclick="setPeriod('week')">This Week</button>
+      <button class="lb-period-btn ${lbPeriod === 'month' ? 'active' : ''}" onclick="setPeriod('month')">This Month</button>
     </div>
     
     <div class="lb-sort">
