@@ -1195,7 +1195,7 @@ function fmtDate(s) {
 
 function extractTitle(md) {
   const m = md.match(/^#\s+(.+)$/m);
-  return m ? m[1].replace(/\*\*/g, '').trim() : null;
+  return m ? m[1].replace(/\*\*/g, '').replace(/^App Idea:\s*/i, '').trim() : null;
 }
 
 function extractPitch(md) {
