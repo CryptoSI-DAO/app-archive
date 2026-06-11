@@ -217,16 +217,19 @@
       "path": "ideas/2026-06-06/003-pawplate/idea.md"
     }
   ],
-  "last_updated": "2026-06-07",
+  "last_updated": "2026-06-11T10:33:00Z",
   "total": 27,
   "extendedResearch": [
     {
       "slug": "racing-tips-marketplace",
-      "title": "Racing Tips Marketplace — Extended Research",
-      "relatedIdeas": ["001-belmont-stakes-guide"],
+      "title": "Racing Tips Marketplace \u2014 Extended Research",
+      "relatedIdeas": [
+        "001-belmont-stakes-guide"
+      ],
       "path": "extended-research/racing-tips-marketplace.md",
       "date": "2026-06-07",
       "summary": "Competitive analysis of racing/tipster marketplace space. Covers Tipstrr, Betaminic, PrizePicks, BettingPros, OLBG, BetDAQ Tips. Proposes 5-layer revenue model (subscriptions, pay-per-tip, rev share, affiliate CPA, free tier). 3-month build plan."
     }
-  ]
+  ],
+  "media": []
 }

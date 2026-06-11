@@ -366,6 +366,271 @@
     color: hsl(var(--primary));
   }
 
+
+  /* ── Media Actions ── */
+  .media-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  .media-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid hsl(var(--border) / 0.4);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+  }
+
+  .media-btn:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    color: var(--text-primary);
+    background: hsl(var(--primary) / 0.08);
+  }
+
+  .media-btn.ready {
+    border-color: hsl(var(--primary) / 0.6);
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
+  }
+
+  .media-btn.ready:hover {
+    background: hsl(var(--primary) / 0.2);
+  }
+
+  .media-btn.loading {
+    border-color: hsl(var(--yellow) / 0.4);
+    color: var(--yellow);
+    pointer-events: none;
+  }
+
+  .media-btn.error {
+    border-color: hsl(var(--destructive) / 0.4);
+    color: var(--red);
+  }
+
+  .media-btn .icon {
+    font-size: 0.875rem;
+  }
+
+  .media-btn.loading .icon {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── Daily Media Actions ── */
+  .daily-media-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  .daily-media-actions .media-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* ── Media Player Overlay ── */
+  .media-player-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .media-player-overlay.open {
+    display: flex;
+  }
+
+  .player-container {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .player-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border) / 0.5);
+    background: hsl(var(--card));
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .player-close:hover {
+    background: hsl(var(--muted));
+    color: var(--text-primary);
+  }
+
+  .player-info {
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .player-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .player-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .player-container audio,
+  .player-container video {
+    width: 100%;
+    border-radius: var(--radius);
+  }
+
+  /* ── Create Modal ── */
+  .create-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 400;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .create-modal-overlay.open {
+    display: flex;
+  }
+
+  .create-modal {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .create-modal h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .create-modal p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .create-modal .hosts {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .create-modal .host-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    background: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary));
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .create-modal .actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .create-modal .btn-primary {
+    padding: 0.625rem 1.5rem;
+    border-radius: 100px;
+    border: none;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .create-modal .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .create-modal .btn-secondary {
+    padding: 0.625rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid hsl(var(--border) / 0.5);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .create-modal .btn-secondary:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    color: var(--text-primary);
+  }
+
   /* ── Modal ── */
   .modal-overlay {
     display: none;
@@ -1039,6 +1304,7 @@ async function fetchMarkdown(path) {
 }
 
 async function init() {
+  await loadMediaRegistry();
   try {
     // Try live GitHub API first
     data = await buildFromGitHub();
@@ -1158,6 +1424,14 @@ function renderDay(date) {
       <div class="summary-section">
         <h3>📊 Daily Summary</h3>
         <div class="summary-content">${parseMD(d.summaryContent)}</div>
+        <div class="daily-media-actions">
+          <button class="media-btn" data-type="radio" data-scope="daily" data-date="${date}" title="Create daily radio show">
+            <span class="icon">📻</span> Create Daily Show
+          </button>
+          <button class="media-btn" data-type="video" data-scope="daily" data-date="${date}" title="Create daily video">
+            <span class="icon">📹</span> Create Daily Video
+          </button>
+        </div>
       </div>
     `;
   }
@@ -1181,11 +1455,20 @@ function renderDay(date) {
             `<span class="score-pill ${k === 'Avg' || k === 'Average' ? 'highlight' : ''}">${k}: ${v}</span>`
           ).join('') : ''}
         </div>
+        <div class="media-actions" onclick="event.stopPropagation()">
+          <button class="media-btn" data-type="radio" data-scope="idea" data-slug="${idea.slug}" data-date="${date}" data-title="${esc(title)}" title="Radio show">
+            <span class="icon">📻</span> Radio
+          </button>
+          <button class="media-btn" data-type="video" data-scope="idea" data-slug="${idea.slug}" data-date="${date}" data-title="${esc(title)}" title="Video">
+            <span class="icon">📹</span> Video
+          </button>
+        </div>
       </div>
     `;
   });
   html += '</div>';
   el.innerHTML = html;
+  updateMediaButtons();
 }
 
 function openModal(date, idx) {
@@ -1474,9 +1757,262 @@ function openIdeaBySlug(slug, date) {
   }
 }
 
+// ── Media State ──
+let mediaRegistry = []; // Loaded from data.json
+let currentCreation = null; // { type, scope, slug, date, title }
+
+// ── Server API config ──
+const SERVER_URL = window.location.hostname === 'localhost'
+  ? 'http://173.249.36.76:8085'
+  : '/api'; // Vercel proxy
+
+// ── Load media registry ──
+async function loadMediaRegistry() {
+  try {
+    const resp = await fetch('data.json');
+    if (resp.ok) {
+      const d = await resp.json();
+      mediaRegistry = d.media || [];
+    }
+  } catch (e) {
+    console.warn('Could not load media registry:', e);
+  }
+}
+
+// ── Check if media exists for an idea/date ──
+function findMedia(type, scope, slug, date) {
+  return mediaRegistry.find(m =>
+    m.type === type &&
+    m.scope === scope &&
+    (scope === 'daily' ? m.date === date : m.slug === slug) &&
+    m.status === 'ready'
+  );
+}
+
+// ── Update media button states ──
+function updateMediaButtons() {
+  document.querySelectorAll('.media-btn').forEach(btn => {
+    const type = btn.dataset.type;
+    const scope = btn.dataset.scope;
+    const slug = btn.dataset.slug || '';
+    const date = btn.dataset.date;
+
+    // Reset classes
+    btn.classList.remove('ready', 'loading', 'error');
+
+    const media = findMedia(type, scope, slug, date);
+    if (media) {
+      btn.classList.add('ready');
+      btn.title = `Play ${type} show`;
+    } else {
+      btn.title = `Create ${type} show`;
+    }
+  });
+}
+
+// ── Media button click handler ──
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.media-btn');
+  if (!btn) return;
+
+  const type = btn.dataset.type;
+  const scope = btn.dataset.scope;
+  const slug = btn.dataset.slug || '';
+  const date = btn.dataset.date;
+  const title = btn.dataset.title || 'Daily Show';
+
+  const media = findMedia(type, scope, slug, date);
+  if (media) {
+    // Play existing media
+    playMedia(media, title);
+  } else {
+    // Show create modal
+    showCreateModal(type, scope, slug, date, title);
+  }
+});
+
+// ── Show create modal ──
+function showCreateModal(type, scope, slug, date, title) {
+  currentCreation = { type, scope, slug, date, title };
+  document.getElementById('createModalTitle').textContent =
+    type === 'radio' ? 'Create Radio Show' : 'Create Video';
+  document.getElementById('createModalDesc').textContent =
+    scope === 'daily'
+      ? `Generate a 5-minute AI-powered ${type} covering today's top 3 ideas, hosted by Data & Spock.`
+      : `Generate a 5-minute AI-powered ${type} covering "${title}", hosted by Data & Spock.`;
+  document.getElementById('createModalOverlay').classList.add('open');
+}
+
+// ── Close create modal ──
+function closeCreateModal() {
+  document.getElementById('createModalOverlay').classList.remove('open');
+  currentCreation = null;
+}
+
+// ── Start creation ──
+async function startCreation() {
+  if (!currentCreation) return;
+
+  const { type, scope, slug, date, title } = currentCreation;
+  closeCreateModal();
+
+  // Set loading state on buttons
+  document.querySelectorAll('.media-btn').forEach(btn => {
+    if (btn.dataset.type === type && btn.dataset.scope === scope &&
+        (scope === 'daily' ? btn.dataset.date === date : btn.dataset.slug === slug)) {
+      btn.classList.add('loading');
+      btn.querySelector('.icon').textContent = '⏳';
+    }
+  });
+
+  try {
+    const resp = await fetch(`${SERVER_URL}/api/create-show`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, scope, slug, date }),
+    });
+
+    if (!resp.ok) throw new Error(`Server error: ${resp.status}`);
+
+    const result = await resp.json();
+    console.log('Creation started:', result);
+
+    // Poll for completion
+    pollStatus(result.job_id, type, scope, slug, date);
+
+  } catch (e) {
+    console.error('Creation failed:', e);
+    // Reset button states
+    document.querySelectorAll('.media-btn').forEach(btn => {
+      if (btn.dataset.type === type && btn.dataset.scope === scope) {
+        btn.classList.remove('loading');
+        btn.classList.add('error');
+        btn.querySelector('.icon').textContent = '⚠️';
+      }
+    });
+  }
+}
+
+// ── Poll for job status ──
+async function pollStatus(jobId, type, scope, slug, date) {
+  const maxAttempts = 60; // 5 minutes (5s interval)
+  let attempts = 0;
+
+  const interval = setInterval(async () => {
+    attempts++;
+    if (attempts > maxAttempts) {
+      clearInterval(interval);
+      console.warn('Polling timed out');
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${SERVER_URL}/api/status/${jobId}`);
+      const status = await resp.json();
+
+      if (status.status === 'completed' || status.status === 'ready') {
+        clearInterval(interval);
+        // Reload media registry and update buttons
+        await loadMediaRegistry();
+        updateMediaButtons();
+      } else if (status.status === 'failed') {
+        clearInterval(interval);
+        console.error('Creation failed:', status.error);
+        // Reset buttons
+        document.querySelectorAll('.media-btn').forEach(btn => {
+          if (btn.dataset.type === type && btn.dataset.scope === scope) {
+            btn.classList.remove('loading');
+            btn.classList.add('error');
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Poll error:', e);
+    }
+  }, 5000);
+}
+
+// ── Play media ──
+function playMedia(media, title) {
+  const overlay = document.getElementById('mediaPlayerOverlay');
+  const audio = document.getElementById('mediaAudio');
+  const video = document.getElementById('mediaVideo');
+  const titleEl = document.getElementById('playerTitle');
+  const metaEl = document.getElementById('playerMeta');
+
+  titleEl.textContent = title;
+
+  if (media.type === 'radio') {
+    audio.style.display = 'block';
+    video.style.display = 'none';
+    audio.src = media.gateway_url || `https://arweave.net/${media.arweave_tx}`;
+    metaEl.textContent = `🎙 Data & Spock • ${media.duration ? Math.round(media.duration / 60) + ':' + String(media.duration % 60).padStart(2, '0') : '5:00'}`;
+    audio.play();
+  } else {
+    audio.style.display = 'none';
+    video.style.display = 'block';
+    video.src = media.gateway_url || `https://arweave.net/${media.arweave_tx}`;
+    metaEl.textContent = `🎙 Data & Spock • ${media.duration ? Math.round(media.duration / 60) + ':' + String(media.duration % 60).padStart(2, '0') : '5:00'}`;
+    video.play();
+  }
+
+  overlay.classList.add('open');
+}
+
+// ── Close player ──
+function closePlayer() {
+  const overlay = document.getElementById('mediaPlayerOverlay');
+  const audio = document.getElementById('mediaAudio');
+  const video = document.getElementById('mediaVideo');
+  audio.pause();
+  video.pause();
+  audio.src = '';
+  video.src = '';
+  overlay.classList.remove('open');
+}
+
+// ── Webhook handler (called by server) ──
+async function handleWebhook(jobId, status, data) {
+  if (status === 'completed' || status === 'ready') {
+    await loadMediaRegistry();
+    updateMediaButtons();
+  }
+}
+
+
 
 // ── Go ──
 init();
 </script>
+
+<!-- ── Media Player Overlay ── -->
+<div id="mediaPlayerOverlay" class="media-player-overlay">
+  <div class="player-container">
+    <button class="player-close" onclick="closePlayer()">✕</button>
+    <div class="player-info">
+      <h3 class="player-title" id="playerTitle">Loading...</h3>
+      <p class="player-meta" id="playerMeta"></p>
+    </div>
+    <audio id="mediaAudio" controls style="display:none;"></audio>
+    <video id="mediaVideo" controls style="display:none;"></video>
+  </div>
+</div>
+
+<!-- ── Create Show Modal ── -->
+<div id="createModalOverlay" class="create-modal-overlay">
+  <div class="create-modal">
+    <h3 id="createModalTitle">Create Radio Show</h3>
+    <p id="createModalDesc">Generate a 5-minute AI-powered radio show covering this idea, hosted by Data & Spock.</p>
+    <div class="hosts">
+      <span class="host-badge">🎙 Data</span>
+      <span class="host-badge">🖖 Spock</span>
+    </div>
+    <div class="actions">
+      <button class="btn-secondary" onclick="closeCreateModal()">Cancel</button>
+      <button class="btn-primary" id="createBtn" onclick="startCreation()">Create Show</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
