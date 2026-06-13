@@ -1348,6 +1348,7 @@ function parseMD(md) {
 // ── State ──
 let data = null;
 let currentDate = null;
+let lbLookup = {}; // slug+date -> leaderboard entry for quick access
 
 // ── Init ──
 // ── GitHub API config ──
@@ -1390,6 +1391,10 @@ async function init() {
   }
   renderHeader();
   renderNav();
+  // Build leaderboard lookup for lightweight data.json fallback
+  if (data.leaderboard) {
+    data.leaderboard.forEach(e => { lbLookup[e.date + ':' + e.slug] = e; });
+  }
   const dates = Object.keys(data.dates).sort().reverse();
   if (dates.length) selectDate(dates[0]);
 }
@@ -1483,11 +1488,28 @@ function renderDay(date) {
     </div>
   `;
 
-  if (d.hasSummary && d.summaryContent) {
-    html += `
+  if (d.hasSummary) {
+    if (d.summaryContent) {
+      html += `
       <div class="summary-section">
         <h3>📊 Daily Summary</h3>
-        <div class="summary-content">${parseMD(d.summaryContent)}</div>
+        <div class="summary-content">${parseMD(d.summaryContent)}</div>`;
+    } else {
+      // Lightweight: fetch summary on demand
+      html += `
+      <div class="summary-section" id="summary-${date}">
+        <h3>📊 Daily Summary</h3>
+        <div class="summary-content"><p style="color:var(--text-muted)">Loading summary...</p></div>`;
+      // Fetch summary asynchronously
+      fetchMarkdown(`${date}/daily-summary.md`).then(md => {
+        const el = document.querySelector(`#summary-${date} .summary-content`);
+        if (el) el.innerHTML = parseMD(md);
+      }).catch(() => {
+        const el = document.querySelector(`#summary-${date} .summary-content`);
+        if (el) el.innerHTML = '<p style="color:var(--text-muted)">Summary not available.</p>';
+      });
+    }
+    html += `
         <div class="daily-media-actions">
           <button class="media-btn" data-type="radio" data-scope="daily" data-date="${date}" title="Create daily radio show">
             <span class="icon">📻</span> Create Daily Show
@@ -1504,10 +1526,28 @@ function renderDay(date) {
   d.ideas.forEach((idea, i) => {
     const rank = i + 1;
     const rc = rank <= 3 ? `rank-${rank}` : '';
-    const content = idea.files['idea.md'] || '';
-    const title = extractTitle(content) || idea.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-    const pitch = extractPitch(content) || '';
-    const scores = extractScores(content);
+    
+    // Support both full (GitHub API) and lightweight (data.json) formats
+    let title, pitch, scores;
+    if (idea.files && idea.files['idea.md']) {
+      const content = idea.files['idea.md'];
+      title = extractTitle(content) || idea.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      pitch = extractPitch(content) || '';
+      scores = extractScores(content);
+    } else {
+      // Lightweight: use leaderboard lookup
+      const lb = lbLookup[date + ':' + idea.slug];
+      title = lb ? lb.name : idea.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      pitch = '';
+      scores = lb ? {
+        'Trend Momentum': lb.scores['Trend Momentum'] || 0,
+        'App Gap': lb.scores['App Gap'] || 0,
+        'Build Simplicity': lb.scores['Build Simplicity'] || 0,
+        'Evergreen Potential': lb.scores['Evergreen Potential'] || 0,
+        'Monetization': lb.scores['Monetization'] || 0,
+        'Average': lb.score || 0
+      } : null;
+    }
 
     html += `
       <div class="idea-card" onclick="openModal('${date}',${i})">
@@ -1535,8 +1575,19 @@ function renderDay(date) {
   updateMediaButtons();
 }
 
-function openModal(date, idx) {
+async function openModal(date, idx) {
   const idea = data.dates[date].ideas[idx];
+  
+  // If files are not embedded (lightweight data.json), fetch from GitHub
+  if (!idea.files) {
+    try {
+      const md = await fetchMarkdown(`${date}/${idea.slug}/idea.md`);
+      idea.files = { 'idea.md': md };
+    } catch (e) {
+      idea.files = { 'idea.md': '# Error\n\nFailed to load idea content: ' + e.message };
+    }
+  }
+  
   const files = idea.files;
   const names = Object.keys(files);
   const content = files['idea.md'] || '';
