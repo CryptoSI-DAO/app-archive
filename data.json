@@ -402,35 +402,7 @@
   },
   "leaderboard": [
     {
-      "name": "Pasta Shapes Guide",
-      "slug": "001-pasta-shapes-guide",
-      "date": "2026-05-27",
-      "score": 8.6,
-      "scores": {
-        "Trend Momentum": 8.0,
-        "App Gap": 10.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 9.0,
-        "Monetization": 7.0
-      },
-      "rank": 1
-    },
-    {
-      "name": "Scoville Heat Guide",
-      "slug": "002-scoville-heat-guide",
-      "date": "2026-05-27",
-      "score": 8.4,
-      "scores": {
-        "Trend Momentum": 8.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 8.0,
-        "Monetization": 8.0
-      },
-      "rank": 2
-    },
-    {
-      "name": "Sleep Hygiene Guide",
+      "name": "001-sleep-hygiene-guide",
       "slug": "001-sleep-hygiene-guide",
       "date": "2026-05-30",
       "score": 8.4,
@@ -441,10 +413,10 @@
         "Evergreen Potential": 9.0,
         "Monetization": 7.0
       },
-      "rank": 3
+      "rank": 1
     },
     {
-      "name": "CreatineTracker",
+      "name": "001-creatine-tracker",
       "slug": "001-creatine-tracker",
       "date": "2026-06-02",
       "score": 8.2,
@@ -455,10 +427,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 7.0
       },
-      "rank": 4
+      "rank": 2
     },
     {
-      "name": "Focus Sleeper \u2014 AI Sleep & Focus Sound Mixer",
+      "name": "001-focus-sleeper",
       "slug": "001-focus-sleeper",
       "date": "2026-05-26",
       "score": 8.2,
@@ -469,10 +441,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 8.0
       },
-      "rank": 5
+      "rank": 3
     },
     {
-      "name": "Head Spa \u2014 Japanese Scalp Treatment Guide",
+      "name": "001-head-spa-guide",
       "slug": "001-head-spa-guide",
       "date": "2026-06-10",
       "score": 8.2,
@@ -483,10 +455,10 @@
         "Evergreen Potential": 7.0,
         "Monetization": 7.0
       },
-      "rank": 6
+      "rank": 4
     },
     {
-      "name": "Ringwise \u2014 Your Oura Ring Companion",
+      "name": "001-ringwise",
       "slug": "001-ringwise",
       "date": "2026-06-06",
       "score": 8.2,
@@ -497,24 +469,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 7.0
       },
-      "rank": 7
+      "rank": 5
     },
     {
-      "name": "Spice Substitution Guide",
-      "slug": "003-spice-substitution-guide",
-      "date": "2026-05-27",
-      "score": 8.2,
-      "scores": {
-        "Trend Momentum": 7.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 9.0,
-        "Monetization": 7.0
-      },
-      "rank": 8
-    },
-    {
-      "name": "Food Holiday Calendar \u2014 Daily Food Celebrations & Deals",
+      "name": "001-food-holiday-calendar",
       "slug": "001-food-holiday-calendar",
       "date": "2026-06-05",
       "score": 8.0,
@@ -525,10 +483,24 @@
         "Evergreen Potential": 8.0,
         "Monetization": 7.0
       },
-      "rank": 9
+      "rank": 6
     },
     {
-      "name": "SeedOilScan",
+      "name": "001-mortgage-calculator-pro",
+      "slug": "001-mortgage-calculator-pro",
+      "date": "2026-06-01",
+      "score": 8.0,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      },
+      "rank": 7
+    },
+    {
+      "name": "002-seed-oil-scanner",
       "slug": "002-seed-oil-scanner",
       "date": "2026-06-02",
       "score": 8.0,
@@ -539,10 +511,24 @@
         "Evergreen Potential": 7.0,
         "Monetization": 7.0
       },
-      "rank": 10
+      "rank": 8
     },
     {
-      "name": "Air Fryer Recipe Cards",
+      "name": "003-stonk-rider",
+      "slug": "003-stonk-rider",
+      "date": "2026-06-12",
+      "score": 8.0,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 7.0
+      },
+      "rank": 9
+    },
+    {
+      "name": "001-air-fryer-recipe-cards",
       "slug": "001-air-fryer-recipe-cards",
       "date": "2026-06-09",
       "score": 7.8,
@@ -553,10 +539,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 7.0
       },
-      "rank": 11
+      "rank": 10
     },
     {
-      "name": "Belmont Stakes Guide 2026",
+      "name": "001-belmont-stakes-guide",
       "slug": "001-belmont-stakes-guide",
       "date": "2026-06-07",
       "score": 7.8,
@@ -567,24 +553,10 @@
         "Evergreen Potential": 6.0,
         "Monetization": 6.0
       },
-      "rank": 12
+      "rank": 11
     },
     {
-      "name": "CreatiTrack \u2014 Creatine & Fitness Gummies Tracker",
-      "slug": "002-creatrack-gummy-tracker",
-      "date": "2026-06-10",
-      "score": 7.8,
-      "scores": {
-        "Trend Momentum": 9.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 7.0,
-        "Monetization": 6.0
-      },
-      "rank": 13
-    },
-    {
-      "name": "Food Holiday Guide",
+      "name": "001-food-holiday-guide",
       "slug": "001-food-holiday-guide",
       "date": "2026-06-03",
       "score": 7.8,
@@ -595,10 +567,10 @@
         "Evergreen Potential": 9.0,
         "Monetization": 6.0
       },
-      "rank": 14
+      "rank": 12
     },
     {
-      "name": "Privacy Rights Tracker",
+      "name": "001-privacy-rights-tracker",
       "slug": "001-privacy-rights-tracker",
       "date": "2026-05-31",
       "score": 7.8,
@@ -609,52 +581,24 @@
         "Evergreen Potential": 8.0,
         "Monetization": 6.0
       },
-      "rank": 15
+      "rank": 13
     },
     {
-      "name": "Contrast Therapy Protocol",
-      "slug": "002-contrast-therapy-protocol",
-      "date": "2026-05-30",
-      "score": 7.6,
+      "name": "002-creatrack-gummy-tracker",
+      "slug": "002-creatrack-gummy-tracker",
+      "date": "2026-06-10",
+      "score": 7.8,
       "scores": {
-        "Trend Momentum": 7.0,
-        "App Gap": 8.0,
+        "Trend Momentum": 9.0,
+        "App Gap": 9.0,
         "Build Simplicity": 9.0,
         "Evergreen Potential": 7.0,
-        "Monetization": 7.0
-      },
-      "rank": 16
-    },
-    {
-      "name": "Food Shelf Life Guide",
-      "slug": "003-food-shelf-life-guide",
-      "date": "2026-05-30",
-      "score": 7.6,
-      "scores": {
-        "Trend Momentum": 6.0,
-        "App Gap": 8.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 9.0,
         "Monetization": 6.0
       },
-      "rank": 17
+      "rank": 14
     },
     {
-      "name": "Persepolis Companion \u2014 The Definitive Graphic Novel Guide",
-      "slug": "002-persepolis-companion",
-      "date": "2026-06-05",
-      "score": 7.6,
-      "scores": {
-        "Trend Momentum": 8.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 8.0,
-        "Evergreen Potential": 6.0,
-        "Monetization": 7.0
-      },
-      "rank": 18
-    },
-    {
-      "name": "Persona 6 Guide & Tracker",
+      "name": "001-persona-6-guide",
       "slug": "001-persona-6-guide",
       "date": "2026-06-08",
       "score": 7.6,
@@ -665,24 +609,10 @@
         "Evergreen Potential": 7.0,
         "Monetization": 7.0
       },
-      "rank": 19
+      "rank": 15
     },
     {
-      "name": "Screen sober \u2014 Digital Wellness Score",
-      "slug": "003-digital-wellness-score",
-      "date": "2026-05-31",
-      "score": 7.6,
-      "scores": {
-        "Trend Momentum": 8.0,
-        "App Gap": 7.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 9.0,
-        "Monetization": 6.0
-      },
-      "rank": 20
-    },
-    {
-      "name": "Screwworm Watch \u2014 Outbreak Guide & Safety Checklist",
+      "name": "001-screwworm-watch",
       "slug": "001-screwworm-watch",
       "date": "2026-06-04",
       "score": 7.6,
@@ -693,10 +623,52 @@
         "Evergreen Potential": 5.0,
         "Monetization": 6.0
       },
-      "rank": 21
+      "rank": 16
     },
     {
-      "name": "Sober Sips \u2014 Discover Non-Alcoholic Drinks",
+      "name": "001-subscription-watchdog",
+      "slug": "001-subscription-watchdog",
+      "date": "2026-06-13",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 8.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      },
+      "rank": 17
+    },
+    {
+      "name": "002-contrast-therapy-protocol",
+      "slug": "002-contrast-therapy-protocol",
+      "date": "2026-05-30",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 7.0
+      },
+      "rank": 18
+    },
+    {
+      "name": "002-persepolis-companion",
+      "slug": "002-persepolis-companion",
+      "date": "2026-06-05",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 8.0,
+        "Evergreen Potential": 6.0,
+        "Monetization": 7.0
+      },
+      "rank": 19
+    },
+    {
+      "name": "002-sober-sips",
       "slug": "002-sober-sips",
       "date": "2026-06-06",
       "score": 7.6,
@@ -707,10 +679,10 @@
         "Evergreen Potential": 7.0,
         "Monetization": 7.0
       },
-      "rank": 22
+      "rank": 20
     },
     {
-      "name": "Splitsheet \u2014 Beautiful Expense Splitting with Receipt OCR",
+      "name": "002-splitsheet",
       "slug": "002-splitsheet",
       "date": "2026-05-26",
       "score": 7.6,
@@ -721,10 +693,38 @@
         "Evergreen Potential": 8.0,
         "Monetization": 7.0
       },
+      "rank": 21
+    },
+    {
+      "name": "003-digital-wellness-score",
+      "slug": "003-digital-wellness-score",
+      "date": "2026-05-31",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 7.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 6.0
+      },
+      "rank": 22
+    },
+    {
+      "name": "003-food-shelf-life-guide",
+      "slug": "003-food-shelf-life-guide",
+      "date": "2026-05-30",
+      "score": 7.6,
+      "scores": {
+        "Trend Momentum": 6.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 9.0,
+        "Monetization": 6.0
+      },
       "rank": 23
     },
     {
-      "name": "WalkDesk \u2014 Under-Desk Walk Tracker",
+      "name": "003-walking-pad-log",
       "slug": "003-walking-pad-log",
       "date": "2026-06-02",
       "score": 7.6,
@@ -738,7 +738,21 @@
       "rank": 24
     },
     {
-      "name": "Broadway Season Guide 2026 \u2014 Tony Awards Edition",
+      "name": "001-greyscale-living",
+      "slug": "001-greyscale-living",
+      "date": "2026-06-12",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 6.0
+      },
+      "rank": 25
+    },
+    {
+      "name": "002-broadway-tony-guide",
       "slug": "002-broadway-tony-guide",
       "date": "2026-06-08",
       "score": 7.4,
@@ -749,24 +763,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 6.0
       },
-      "rank": 25
-    },
-    {
-      "name": "Interval \u2014 Smart Workout Timer with Progressive Overload",
-      "slug": "003-interval",
-      "date": "2026-05-26",
-      "score": 7.4,
-      "scores": {
-        "Trend Momentum": 7.0,
-        "App Gap": 8.0,
-        "Build Simplicity": 7.0,
-        "Evergreen Potential": 8.0,
-        "Monetization": 7.0
-      },
       "rank": 26
     },
     {
-      "name": "Love Island USA S8 Companion",
+      "name": "002-love-island-companion",
       "slug": "002-love-island-companion",
       "date": "2026-06-03",
       "score": 7.4,
@@ -780,7 +780,7 @@
       "rank": 27
     },
     {
-      "name": "Love Island USA Season 8 Tracker",
+      "name": "002-love-island-tracker",
       "slug": "002-love-island-tracker",
       "date": "2026-06-07",
       "score": 7.4,
@@ -794,7 +794,7 @@
       "rank": 28
     },
     {
-      "name": "Moon Phase \u2014 Lunar Calendar Guide",
+      "name": "002-lunar-calendar-guide",
       "slug": "002-lunar-calendar-guide",
       "date": "2026-05-31",
       "score": 7.4,
@@ -808,35 +808,7 @@
       "rank": 29
     },
     {
-      "name": "Padel 101 \u2014 Rules, Drills & Court Guide",
-      "slug": "003-padel-101-guide",
-      "date": "2026-06-10",
-      "score": 7.4,
-      "scores": {
-        "Trend Momentum": 8.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 8.0,
-        "Evergreen Potential": 7.0,
-        "Monetization": 6.0
-      },
-      "rank": 30
-    },
-    {
-      "name": "PawPlate \u2014 Dog Dental Health Tracker",
-      "slug": "003-pawplate",
-      "date": "2026-06-06",
-      "score": 7.4,
-      "scores": {
-        "Trend Momentum": 7.0,
-        "App Gap": 9.0,
-        "Build Simplicity": 9.0,
-        "Evergreen Potential": 8.0,
-        "Monetization": 6.0
-      },
-      "rank": 31
-    },
-    {
-      "name": "Pickleball Scorekeeper & Drills",
+      "name": "002-pickleball-score-keeper",
       "slug": "002-pickleball-score-keeper",
       "date": "2026-06-09",
       "score": 7.4,
@@ -847,10 +819,38 @@
         "Evergreen Potential": 7.0,
         "Monetization": 6.0
       },
+      "rank": 30
+    },
+    {
+      "name": "002-prompt-craft",
+      "slug": "002-prompt-craft",
+      "date": "2026-06-13",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 9.0,
+        "App Gap": 6.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 6.0
+      },
+      "rank": 31
+    },
+    {
+      "name": "002-vax-tracker",
+      "slug": "002-vax-tracker",
+      "date": "2026-06-01",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 6.0
+      },
       "rank": 32
     },
     {
-      "name": "Wonders \u2014 Interactive Architecture Guide to the World's Most Amazing Buildings",
+      "name": "003-architecture-wonder-guide",
       "slug": "003-architecture-wonder-guide",
       "date": "2026-06-05",
       "score": 7.4,
@@ -864,7 +864,49 @@
       "rank": 33
     },
     {
-      "name": "Aurora Photo Guide \u2014 iPhone Northern Lights Photography",
+      "name": "003-interval",
+      "slug": "003-interval",
+      "date": "2026-05-26",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      },
+      "rank": 34
+    },
+    {
+      "name": "003-padel-101-guide",
+      "slug": "003-padel-101-guide",
+      "date": "2026-06-10",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 8.0,
+        "Evergreen Potential": 7.0,
+        "Monetization": 6.0
+      },
+      "rank": 35
+    },
+    {
+      "name": "003-pawplate",
+      "slug": "003-pawplate",
+      "date": "2026-06-06",
+      "score": 7.4,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 9.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 6.0
+      },
+      "rank": 36
+    },
+    {
+      "name": "002-aurora-photo-guide",
       "slug": "002-aurora-photo-guide",
       "date": "2026-06-04",
       "score": 7.2,
@@ -875,10 +917,38 @@
         "Evergreen Potential": 7.0,
         "Monetization": 5.0
       },
-      "rank": 34
+      "rank": 37
     },
     {
-      "name": "Caffeine Tracker \u2014 Daily Intake Monitor",
+      "name": "002-riven-muscle-failure",
+      "slug": "002-riven-muscle-failure",
+      "date": "2026-06-12",
+      "score": 7.2,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 8.0,
+        "Build Simplicity": 6.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 7.0
+      },
+      "rank": 38
+    },
+    {
+      "name": "003-ai-prompt-library",
+      "slug": "003-ai-prompt-library",
+      "date": "2026-06-01",
+      "score": 7.2,
+      "scores": {
+        "Trend Momentum": 8.0,
+        "App Gap": 7.0,
+        "Build Simplicity": 9.0,
+        "Evergreen Potential": 6.0,
+        "Monetization": 6.0
+      },
+      "rank": 39
+    },
+    {
+      "name": "003-caffeine-tracker",
       "slug": "003-caffeine-tracker",
       "date": "2026-06-07",
       "score": 7.2,
@@ -889,10 +959,10 @@
         "Evergreen Potential": 9.0,
         "Monetization": 8.0
       },
-      "rank": 35
+      "rank": 40
     },
     {
-      "name": "Gaming Event Tracker",
+      "name": "003-gaming-event-tracker",
       "slug": "003-gaming-event-tracker",
       "date": "2026-06-03",
       "score": 7.2,
@@ -903,10 +973,10 @@
         "Evergreen Potential": 7.0,
         "Monetization": 5.0
       },
-      "rank": 36
+      "rank": 41
     },
     {
-      "name": "PetLife \u2014 Pet Journal & Health Tracker",
+      "name": "003-petlife-journal",
       "slug": "003-petlife-journal",
       "date": "2026-06-09",
       "score": 7.2,
@@ -917,10 +987,10 @@
         "Evergreen Potential": 8.0,
         "Monetization": 6.0
       },
-      "rank": 37
+      "rank": 42
     },
     {
-      "name": "Reptile ID \u2014 Herpetology Field Guide",
+      "name": "003-reptile-id-field-guide",
       "slug": "003-reptile-id-field-guide",
       "date": "2026-06-08",
       "score": 7.2,
@@ -931,10 +1001,24 @@
         "Evergreen Potential": 8.0,
         "Monetization": 6.0
       },
-      "rank": 38
+      "rank": 43
     },
     {
-      "name": "World Cup Meals Tracker \u2014 McDonald's FIFA Collectibles",
+      "name": "003-pet-health-journal",
+      "slug": "003-pet-health-journal",
+      "date": "2026-06-13",
+      "score": 7.0,
+      "scores": {
+        "Trend Momentum": 7.0,
+        "App Gap": 7.0,
+        "Build Simplicity": 7.0,
+        "Evergreen Potential": 8.0,
+        "Monetization": 6.0
+      },
+      "rank": 44
+    },
+    {
+      "name": "003-world-cup-meals-tracker",
       "slug": "003-world-cup-meals-tracker",
       "date": "2026-06-04",
       "score": 7.0,
@@ -945,12 +1029,12 @@
         "Evergreen Potential": 4.0,
         "Monetization": 6.0
       },
-      "rank": 39
+      "rank": 45
     },
     {
-      "name": "001-greyscale-living",
-      "slug": "001-greyscale-living",
-      "date": "2026-06-12",
+      "name": "001-pasta-shapes-guide",
+      "slug": "001-pasta-shapes-guide",
+      "date": "2026-05-27",
       "score": 0.0,
       "scores": {
         "Trend Momentum": 0,
@@ -959,21 +1043,7 @@
         "Evergreen Potential": 0,
         "Monetization": 0
       },
-      "rank": 40
-    },
-    {
-      "name": "001-mortgage-calculator-pro",
-      "slug": "001-mortgage-calculator-pro",
-      "date": "2026-06-01",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
-      "rank": 41
+      "rank": 46
     },
     {
       "name": "001-sobriety-tracker",
@@ -987,21 +1057,7 @@
         "Evergreen Potential": 0,
         "Monetization": 0
       },
-      "rank": 42
-    },
-    {
-      "name": "001-subscription-watchdog",
-      "slug": "001-subscription-watchdog",
-      "date": "2026-06-13",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
-      "rank": 43
+      "rank": 47
     },
     {
       "name": "002-plant-parent",
@@ -1015,63 +1071,21 @@
         "Evergreen Potential": 0,
         "Monetization": 0
       },
-      "rank": 44
-    },
-    {
-      "name": "002-prompt-craft",
-      "slug": "002-prompt-craft",
-      "date": "2026-06-13",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
-      "rank": 45
-    },
-    {
-      "name": "002-riven-muscle-failure",
-      "slug": "002-riven-muscle-failure",
-      "date": "2026-06-12",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
-      "rank": 46
-    },
-    {
-      "name": "002-vax-tracker",
-      "slug": "002-vax-tracker",
-      "date": "2026-06-01",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
-      "rank": 47
-    },
-    {
-      "name": "003-ai-prompt-library",
-      "slug": "003-ai-prompt-library",
-      "date": "2026-06-01",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
       "rank": 48
+    },
+    {
+      "name": "002-scoville-heat-guide",
+      "slug": "002-scoville-heat-guide",
+      "date": "2026-05-27",
+      "score": 0.0,
+      "scores": {
+        "Trend Momentum": 0,
+        "App Gap": 0,
+        "Build Simplicity": 0,
+        "Evergreen Potential": 0,
+        "Monetization": 0
+      },
+      "rank": 49
     },
     {
       "name": "003-microhabit",
@@ -1085,26 +1099,12 @@
         "Evergreen Potential": 0,
         "Monetization": 0
       },
-      "rank": 49
-    },
-    {
-      "name": "003-pet-health-journal",
-      "slug": "003-pet-health-journal",
-      "date": "2026-06-13",
-      "score": 0.0,
-      "scores": {
-        "Trend Momentum": 0,
-        "App Gap": 0,
-        "Build Simplicity": 0,
-        "Evergreen Potential": 0,
-        "Monetization": 0
-      },
       "rank": 50
     },
     {
-      "name": "003-stonk-rider",
-      "slug": "003-stonk-rider",
-      "date": "2026-06-12",
+      "name": "003-spice-substitution-guide",
+      "slug": "003-spice-substitution-guide",
+      "date": "2026-05-27",
       "score": 0.0,
       "scores": {
         "Trend Momentum": 0,
