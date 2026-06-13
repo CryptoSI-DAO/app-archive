@@ -1529,8 +1529,8 @@ function renderDay(date) {
     
     // Support both full (GitHub API) and lightweight (data.json) formats
     let title, pitch, scores;
-    if (idea.files && idea.files['idea.md']) {
-      const content = idea.files['idea.md'];
+    if (idea.files) {
+      const content = idea.files['idea.md'] || idea.files['requirements.md'] || '';
       title = extractTitle(content) || idea.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       pitch = extractPitch(content) || '';
       scores = extractScores(content);
@@ -1590,7 +1590,8 @@ async function openModal(date, idx) {
   
   const files = idea.files;
   const names = Object.keys(files);
-  const content = files['idea.md'] || '';
+  // Prefer requirements.md for display, fall back to idea.md
+  const content = files['requirements.md'] || files['idea.md'] || '';
   const title = extractTitle(content) || idea.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
   document.getElementById('modalTitle').textContent = title;
@@ -1641,7 +1642,7 @@ function extractPitch(md) {
 
 function extractScores(md) {
   // Find the Scoring Breakdown section
-  const section = md.match(/## Scoring Breakdown([\s\S]+?)(?=\n##|\n---)/);
+  const section = md.match(/## Scoring Breakdown([\s\S]+?)(?=\n##|\n---|$)/m);
   if (!section) return null;
   const scores = {};
   // Parse all table rows in the section
@@ -1744,7 +1745,7 @@ function renderLeaderboard() {
     for (const date of Object.keys(data.dates).sort()) {
       const day = data.dates[date];
       for (const idea of (day.ideas || [])) {
-        const md = idea.files['idea.md'] || '';
+        const md = idea.files['requirements.md'] || idea.files['idea.md'] || '';
         const title = extractTitle(md) || idea.slug;
         const scores = extractScores(md) || {};
         const avgStr = (scores['Average'] || scores['Avg'] || '0');
