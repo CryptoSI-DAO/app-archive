@@ -379,6 +379,20 @@
         }
       ],
       "has_summary": true
+    },
+    "2026-06-28": {
+      "ideas": [
+        {
+          "slug": "001-eyegym-vision-training"
+        },
+        {
+          "slug": "002-stretchdesk-desk-stretch-routines"
+        },
+        {
+          "slug": "003-blueray-screen-coach"
+        }
+      ],
+      "has_summary": false
     }
   },
   "leaderboard": [
