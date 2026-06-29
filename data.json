@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-23",
+  "generated": "2026-06-29",
   "repo": "CryptoSI-DAO/app-ideas",
   "dates": {
     "2026-06-23": {
@@ -393,6 +393,30 @@
         }
       ],
       "has_summary": false
+    },
+    "2026-06-29": {
+      "ideas": [
+        {
+          "slug": "002-solecare",
+          "files": {
+            "idea.md": "ideas/2026-06-29/002-solecare/idea.md"
+          }
+        },
+        {
+          "slug": "001-pouch-pal",
+          "files": {
+            "idea.md": "ideas/2026-06-29/001-pouch-pal/idea.md"
+          }
+        },
+        {
+          "slug": "003-sunguard",
+          "files": {
+            "idea.md": "ideas/2026-06-29/003-sunguard/idea.md"
+          }
+        }
+      ],
+      "has_summary": true,
+      "summaryContent": ""
     }
   },
   "leaderboard": [
@@ -1529,6 +1553,20 @@
         "Monetization": 0
       },
       "rank": 81
+    },
+    {
+      "rank": 0,
+      "name": "SoleCare",
+      "slug": "002-solecare",
+      "date": "2026-06-29",
+      "score": 8.4,
+      "scores": {
+        "Trend Momentum": 8,
+        "App Gap": 10,
+        "Build Simplicity": 9,
+        "Evergreen Potential": 8,
+        "Monetization": 7
+      }
     }
   ]
 }
