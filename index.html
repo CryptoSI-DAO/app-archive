@@ -1421,14 +1421,18 @@ async function init() {
   if (dates.length) selectDate(dates[0]);
 }
 
-// ── Build from Supabase (PRIMARY — 1 request, ~0.1s) ──
+// ── Build from Supabase (PRIMARY — lightweight initial load, lazy full content) ──
+// Phase 1: Fetch lightweight index (66KB vs 1.3MB) for instant page render
+// Phase 2: Fetch full_content only for the selected date when user clicks
+const _fullContentCache = {}; // date -> { slug -> content }
+
 async function buildFromSupabase() {
-  // Fetch all ideas in a single request
+  // LIGHTWEIGHT initial load — no full_content column (19x smaller payload)
   const ideas = await supabaseGet(
-    "app_ideas?select=date,slug,num,title,score,pitch,full_content,github_path&order=date.desc,num.asc&limit=500"
+    "app_ideas?select=date,slug,num,title,score,pitch&order=date.desc,num.asc&limit=500"
   );
 
-  // Fetch daily summaries
+  // Fetch daily summaries (small)
   let summaries = [];
   try {
     summaries = await supabaseGet(
@@ -1449,7 +1453,6 @@ async function buildFromSupabase() {
 
     if (!structure[dateKey]) {
       structure[dateKey] = { ideas: [], has_summary: false };
-      // Add daily summary if available
       if (summaryMap[dateKey]) {
         structure[dateKey].has_summary = true;
         structure[dateKey].summaryContent = summaryMap[dateKey].content || '';
@@ -1458,15 +1461,13 @@ async function buildFromSupabase() {
 
     structure[dateKey].ideas.push({
       slug: idea.slug,
-      files: { 'idea.md': idea.full_content || '' },
-      // Cache metadata for faster rendering
+      files: {}, // Empty — will be lazy-loaded when user clicks
       _title: idea.title,
       _score: parseFloat(idea.score) || 0,
       _pitch: idea.pitch || '',
       _fromSupabase: true,
     });
 
-    // Build leaderboard entry
     leaderboard.push({
       name: idea.title || idea.slug,
       slug: idea.slug,
@@ -1476,7 +1477,6 @@ async function buildFromSupabase() {
     });
   }
 
-  // Sort leaderboard by score desc
   leaderboard.sort((a, b) => b.score - a.score);
   leaderboard.forEach((e, i) => { e.rank = i + 1; });
 
@@ -1487,6 +1487,37 @@ async function buildFromSupabase() {
     leaderboard,
     source: 'supabase',
   };
+}
+
+// Lazy-load full content for a specific date's ideas (called on demand)
+async function loadFullContentForDate(date) {
+  if (_fullContentCache[date]) return _fullContentCache[date];
+
+  try {
+    const ideas = await supabaseGet(
+      `app_ideas?select=slug,full_content&date=eq.${date}&order=num.asc`
+    );
+
+    const cache = {};
+    for (const idea of ideas) {
+      cache[idea.slug] = idea.full_content || '';
+    }
+    _fullContentCache[date] = cache;
+
+    // Populate the data structure so cards show content
+    if (data.dates[date]) {
+      for (const idea of data.dates[date].ideas) {
+        if (cache[idea.slug] && !idea.files['idea.md']) {
+          idea.files['idea.md'] = cache[idea.slug];
+        }
+      }
+    }
+
+    return cache;
+  } catch (e) {
+    console.warn(`Failed to lazy-load content for ${date}:`, e.message);
+    return {};
+  }
 }
 
 async function buildFromGitHub() {
@@ -1563,7 +1594,15 @@ function selectDate(date) {
   document.querySelectorAll('.date-chip').forEach(c => {
     c.classList.toggle('active', c.dataset.date === date);
   });
+  // Render cards immediately with metadata (title, score, pitch)
   renderDay(date);
+  // Lazy-load full content in background, then re-render expanded cards
+  if (data.source === 'supabase') {
+    loadFullContentForDate(date).then(() => {
+      // Re-render only the idea cards that now have content
+      renderDay(date);
+    });
+  }
 }
 
 function renderDay(date) {
