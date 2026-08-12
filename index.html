@@ -1351,10 +1351,14 @@ let currentDate = null;
 let lbLookup = {}; // slug+date -> leaderboard entry for quick access
 
 // ── Init ──
-// ── GitHub API config ──
+// ── GitHub API config (fallback) ──
 const REPO = "CryptoSI-DAO/app-ideas";
 const API_BASE = `https://api.github.com/repos/${REPO}/contents/ideas`;
 const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/ideas`;
+
+// ── Supabase config (primary — fast) ──
+const SUPABASE_URL = "https://db.cryptosidao.org";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgxNzM2MjQxLCJleHAiOjIwOTcwOTYyNDEsInN1YiI6IiIsImF1ZCI6IiIsInNlc3Npb25faWQiOiIifQ.42EIXPOgVEG87j7Pr6HKgAS_jhgMZhn63xrBoiT-RCM";
 
 async function ghAPI(url) {
   const r = await fetch(url, { headers: { Accept: "application/vnd.github.v3+json" } });
@@ -1368,25 +1372,43 @@ async function fetchMarkdown(path) {
   return r.text();
 }
 
+async function supabaseGet(path) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+  });
+  if (!r.ok) throw new Error(`Supabase ${r.status}`);
+  return r.json();
+}
+
 async function init() {
   await loadMediaRegistry();
   try {
-    // Try live GitHub API first
-    data = await buildFromGitHub();
+    // Try Supabase first (fast — single request)
+    data = await buildFromSupabase();
+    console.log("✅ Loaded from Supabase");
   } catch (e) {
-    console.warn("GitHub API failed, falling back to data.json:", e.message);
+    console.warn("Supabase failed, trying GitHub API:", e.message);
     try {
-      const resp = await fetch('data.json');
-      if (!resp.ok) throw new Error('data.json not found');
-      data = await resp.json();
+      data = await buildFromGitHub();
+      console.log("✅ Loaded from GitHub API (fallback)");
     } catch (e2) {
-      document.getElementById('main').innerHTML = `
-        <div class="empty-state">
-          <div class="icon">⚠️</div>
-          <h3>Failed to load ideas</h3>
-          <p>${e.message}</p>
-        </div>`;
-      return;
+      console.warn("GitHub API failed, falling back to data.json:", e2.message);
+      try {
+        const resp = await fetch('data.json');
+        if (!resp.ok) throw new Error('data.json not found');
+        data = await resp.json();
+      } catch (e3) {
+        document.getElementById('main').innerHTML = `
+          <div class="empty-state">
+            <div class="icon">⚠️</div>
+            <h3>Failed to load ideas</h3>
+            <p>${e.message} / ${e2.message}</p>
+          </div>`;
+        return;
+      }
     }
   }
   renderHeader();
@@ -1397,6 +1419,74 @@ async function init() {
   }
   const dates = Object.keys(data.dates).sort().reverse();
   if (dates.length) selectDate(dates[0]);
+}
+
+// ── Build from Supabase (PRIMARY — 1 request, ~0.1s) ──
+async function buildFromSupabase() {
+  // Fetch all ideas in a single request
+  const ideas = await supabaseGet(
+    "app_ideas?select=date,slug,num,title,score,pitch,full_content,github_path&order=date.desc,num.asc&limit=500"
+  );
+
+  // Fetch daily summaries
+  let summaries = [];
+  try {
+    summaries = await supabaseGet(
+      "app_ideas_daily?select=date,summary&order=date.desc&limit=200"
+    );
+  } catch (e) {
+    console.warn("Could not load daily summaries from Supabase:", e.message);
+  }
+
+  const summaryMap = {};
+  summaries.forEach(s => { summaryMap[s.date] = s.summary; });
+
+  const structure = {};
+  const leaderboard = [];
+
+  for (const idea of ideas) {
+    const dateKey = idea.date;
+
+    if (!structure[dateKey]) {
+      structure[dateKey] = { ideas: [], has_summary: false };
+      // Add daily summary if available
+      if (summaryMap[dateKey]) {
+        structure[dateKey].has_summary = true;
+        structure[dateKey].summaryContent = summaryMap[dateKey].content || '';
+      }
+    }
+
+    structure[dateKey].ideas.push({
+      slug: idea.slug,
+      files: { 'idea.md': idea.full_content || '' },
+      // Cache metadata for faster rendering
+      _title: idea.title,
+      _score: parseFloat(idea.score) || 0,
+      _pitch: idea.pitch || '',
+      _fromSupabase: true,
+    });
+
+    // Build leaderboard entry
+    leaderboard.push({
+      name: idea.title || idea.slug,
+      slug: idea.slug,
+      date: idea.date,
+      score: parseFloat(idea.score) || 0,
+      scores: {},
+    });
+  }
+
+  // Sort leaderboard by score desc
+  leaderboard.sort((a, b) => b.score - a.score);
+  leaderboard.forEach((e, i) => { e.rank = i + 1; });
+
+  return {
+    generated: new Date().toISOString().slice(0, 10),
+    repo: REPO,
+    dates: structure,
+    leaderboard,
+    source: 'supabase',
+  };
 }
 
 async function buildFromGitHub() {
